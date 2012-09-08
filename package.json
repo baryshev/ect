@@ -1,6 +1,6 @@
 {
 	"name" : "cent",
-	"version" : "0.1.0",
+	"version" : "0.1.1",
 	"description" : "CoffeeScript template engine",
 	"keywords": [ "template" ],
 	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
