@@ -1,10 +1,10 @@
-<%! sublayout %>
+<% extend 'sublayout' %>
 <p>
 Page content
 </p>
-<%[ side1 %>
+<% block 'side1' : %>
 redefined side1 content
-<%]%>
-<%[ side2 %>
+<% end %>
+<% block 'side2' : %>
 side2 content
-<%]%>
+<% end %>

@@ -35,8 +35,8 @@ You may use JavaScript object as root.
 var Cent = require('cent');
 
 var renderer = Cent({ root : {
-				layout: '<html><head><title><%= title %></title></head><body><%*%></body></html>',
-				page: '<%! layout %><p>Page content</p>'
+				layout: '<html><head><title><%- title %></title></head><body><% content %></body></html>',
+				page: '<% extend "layout" %><p>Page content</p>'
 				}, useCache : true
 			});
 
@@ -50,7 +50,13 @@ See full example in [examples](https://github.com/baryshev/cent/tree/master/exam
 
 ## Syntax
 
-### Output
+### Unescaped output
+
+```
+<%- someVar %>
+```
+
+### Escaped output
 
 ```
 <%= someVar %>
@@ -59,8 +65,8 @@ See full example in [examples](https://github.com/baryshev/cent/tree/master/exam
 ### CoffeeScript code
 
 ```
-<% for article in articles : %>
-	<%@ article { article: article } %>
+<% for article in @articles : %>
+	<% partial 'article', { article: article } %>
 <% end %>
 ```
 
@@ -68,28 +74,28 @@ or
 
 ```
 <% if user?.authenticated : %>
-	<%@ partials/user %>
+	<% partial 'partials/user' %>
 <% else : %>
-	<%@ partials/auth %>
+	<% partial 'partials/auth' %>
 <% end %>
 ```
 
 ### Inheritance
 
 ```
-<%! layout %>
+<% extend 'layout' %>
 ```
 or 
 
 ```
-<%! layout { customVar: 'Hello, World!' } %>
+<% extend 'layout', { customVar: 'Hello, World!' } %>
 ```
 
 Use
 
 
 ```
-<%*%>
+<% content %>
 ```
 
 in parent template to define the insertion point.
@@ -97,28 +103,28 @@ in parent template to define the insertion point.
 ### Partials
 
 ```
-<%@ partial %>
+<% partial 'partial' %>
 ```
 
 or
 
 ```
-<%@ partial { customVar: 'Hello, World!' } %>
+<% partial 'partial', { customVar: 'Hello, World!' } %>
 ```
 
 ### Blocks
 
 ```
-<%[ blockName %>
+<% block 'blockName' : %>
 	<p>This is block content</p>
-<%]%>
+<% end %>
 ```
 
 Use
 
 
 ```
-<%* blockName %>
+<% content 'blockName' %>
 ```
 
 in parent template to define the insertion point.
