@@ -73,7 +73,7 @@ See full example in [examples](https://github.com/baryshev/cent/tree/master/exam
 or
 
 ```
-<% if user?.authenticated : %>
+<% if @user?.authenticated : %>
 	<% partial 'partials/user' %>
 <% else : %>
 	<% partial 'partials/auth' %>
