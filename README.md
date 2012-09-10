@@ -1,4 +1,4 @@
-# ect
+# ECT
 
 CoffeeScript template engine. Backward compatible with [eco](https://github.com/sstephenson/eco).
 
@@ -19,9 +19,9 @@ CoffeeScript template engine. Backward compatible with [eco](https://github.com/
 ## Usage
 
 ```js
-var ect = require('ect');
+var ECT = require('ect');
 
-var renderer = ect({ root : __dirname + '/view', useCache : true, ext : '.html' });
+var renderer = ECT({ root : __dirname + '/view', useCache : true, ext : '.html' });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
@@ -32,9 +32,9 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 You may use JavaScript object as root.
 
 ```js
-var ect = require('ect');
+var ECT = require('ect');
 
-var renderer = ect({ root : {
+var renderer = ECT({ root : {
 				layout: '<html><head><title><%- title %></title></head><body><% content %></body></html>',
 				page: '<% extend "layout" %><p>Page content</p>'
 				}, useCache : true
@@ -145,7 +145,7 @@ Blocks supports more than one level of inheritance and may be redefined.
 Basically, include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js) to a page and ect ready to use.
 
 ```js
-var renderer = ect({ root : '/view', useCache : true });
+var renderer = ECT({ root : '/view', useCache : true });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
