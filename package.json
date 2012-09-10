@@ -1,13 +1,13 @@
 {
-	"name" : "cent",
-	"version" : "0.2.2",
+	"name" : "ect",
+	"version" : "0.1.0",
 	"description" : "CoffeeScript template engine",
 	"keywords": [ "template" ],
 	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
 	"main" : "index",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/baryshev/cent.git"
+		"url": "git://github.com/baryshev/ect.git"
 	},
 	"dependencies": {
 		"coffee-script": ">= 1.3.3"

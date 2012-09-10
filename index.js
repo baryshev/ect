@@ -1,1 +1,1 @@
-module.exports = require('./lib/cent');
+module.exports = require('./lib/ect');

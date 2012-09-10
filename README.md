@@ -1,10 +1,10 @@
-# Cent
+# ect
 
 CoffeeScript template engine. Backward compatible with [eco](https://github.com/sstephenson/eco).
 
 ## Installation
 
-	npm install cent
+	npm install ect
 
 ## Features
 
@@ -19,9 +19,9 @@ CoffeeScript template engine. Backward compatible with [eco](https://github.com/
 ## Usage
 
 ```js
-var Cent = require('cent');
+var ect = require('ect');
 
-var renderer = Cent({ root : __dirname + '/view', useCache : true, ext : '.html' });
+var renderer = ect({ root : __dirname + '/view', useCache : true, ext : '.html' });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
@@ -32,9 +32,9 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 You may use JavaScript object as root.
 
 ```js
-var Cent = require('cent');
+var ect = require('ect');
 
-var renderer = Cent({ root : {
+var renderer = ect({ root : {
 				layout: '<html><head><title><%- title %></title></head><body><% content %></body></html>',
 				page: '<% extend "layout" %><p>Page content</p>'
 				}, useCache : true
@@ -46,7 +46,7 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 });
 ```
 
-See full example in [examples](https://github.com/baryshev/cent/tree/master/examples) folder.
+See full example in [examples](https://github.com/baryshev/ect/tree/master/examples) folder.
 
 ## Syntax
 
@@ -142,10 +142,10 @@ Blocks supports more than one level of inheritance and may be redefined.
 
 ## Client-side support
 
-Basically, include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [cent.min.js](https://github.com/baryshev/cent/tree/master/cent.min.js) to a page and Cent ready to use.
+Basically, include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js) to a page and ect ready to use.
 
 ```js
-var renderer = Cent({ root : '/view', useCache : true });
+var renderer = ect({ root : '/view', useCache : true });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
