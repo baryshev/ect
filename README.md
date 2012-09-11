@@ -46,7 +46,7 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 });
 ```
 
-See full example in [examples](https://github.com/baryshev/ect/tree/master/examples) folder.
+You can [play with demo](http://ectjs.com) to check all features.
 
 ## Syntax
 
