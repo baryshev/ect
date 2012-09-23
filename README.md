@@ -21,7 +21,7 @@ CoffeeScript template engine. Backward compatible with [eco](https://github.com/
 ```js
 var ECT = require('ect');
 
-var renderer = ECT({ root : __dirname + '/view', cache : true, ext : '.ect' });
+var renderer = ECT({ root : __dirname + '/view', ext : '.ect' });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
@@ -37,7 +37,7 @@ var ECT = require('ect');
 var renderer = ECT({ root : {
 				layout: '<html><head><title><%- title %></title></head><body><% content %></body></html>',
 				page: '<% extend "layout" %><p>Page content</p>'
-				}, cache : true
+				}
 			});
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
@@ -66,7 +66,7 @@ You can [play with demo](http://ectjs.com) to check all features.
 
 ```
 <% for article in @articles : %>
-	<% partial 'article', { article: article } %>
+	<% include 'article', article %>
 <% end %>
 ```
 
@@ -74,9 +74,9 @@ or
 
 ```
 <% if @user?.authenticated : %>
-	<% partial 'partials/user' %>
+	<% include 'partials/user' %>
 <% else : %>
-	<% partial 'partials/auth' %>
+	<% include 'partials/auth' %>
 <% end %>
 ```
 
@@ -84,11 +84,6 @@ or
 
 ```
 <% extend 'layout' %>
-```
-or 
-
-```
-<% extend 'layout', { customVar: 'Hello, World!' } %>
 ```
 
 Use
@@ -103,13 +98,13 @@ in parent template to define the insertion point.
 ### Partials
 
 ```
-<% partial 'partial' %>
+<% include 'partial' %>
 ```
 
-or
+You can redefine data context of partial
 
 ```
-<% partial 'partial', { customVar: 'Hello, World!' } %>
+<% include 'partial', { customVar: 'Hello, World!' } %>
 ```
 
 ### Blocks
@@ -135,7 +130,7 @@ Blocks supports more than one level of inheritance and may be redefined.
 
   - `root`            Templates root folder or JavaScript object containing templates
   - `ext`             Extension of templates, defaulting to '' (not used for JavaScript objects as root)
-  - `cache`           Compiled functions are cached, defaulting to false
+  - `cache`           Compiled functions are cached, defaulting to true
   - `watch`           Automatic reloading of changed templates, defaulting to false (useful for debugging with enabled cache, not supported for client-side)
   - `open`            Open tag, defaulting to '<%'
   - `close`           Closing tag, defaulting to '%>'
@@ -145,7 +140,7 @@ Blocks supports more than one level of inheritance and may be redefined.
 Basically, include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js) to a page and ect ready to use.
 
 ```js
-var renderer = ECT({ root : 'view', cache : true });
+var renderer = ECT({ root : 'view' });
 
 renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(error);
