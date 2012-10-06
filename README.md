@@ -48,6 +48,40 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 
 You can [play with demo](http://ectjs.com) to check all features.
 
+### With express
+
+app.js
+```js
+var express = require('express');
+var app = express();
+var ECT = require('ect');
+var ectRenderer = ECT({ cache: true, watch: true, root: __dirname + '/views' });
+
+app.engine('.ect', ectRenderer.render);
+
+app.get('/', function(req, res){
+	res.render('index.ect');
+});
+
+app.listen(3000);
+console.log('Listening on port 3000');
+```
+
+views/index.ect
+```html
+<% extend 'layout.ect' %>
+<div>Hello, World!</div>
+```
+
+views/layout.ect
+```html
+<html>
+	<body>
+		<% content %>
+	</body>
+</html>
+```
+
 ## Syntax
 
 ### Unescaped output
