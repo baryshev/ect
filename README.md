@@ -1,6 +1,8 @@
 # ECT
 
-CoffeeScript template engine. Backward compatible with [eco](https://github.com/sstephenson/eco).
+[Performance focused](http://ectjs.com/#benchmark) JavaScript template engine with embedded CoffeeScript syntax.
+
+[Just try demo](http://ectjs.com) to check all features.
 
 ## Installation
 
@@ -8,6 +10,7 @@ CoffeeScript template engine. Backward compatible with [eco](https://github.com/
 
 ## Features
 
+  * Excellent performance
   * Caching templates
   * Automatic reloading of changed templates
   * CoffeeScript code in templates
@@ -15,6 +18,8 @@ CoffeeScript template engine. Backward compatible with [eco](https://github.com/
   * Node.JS and client-side support
   * Powerful but simple syntax
   * Inheritance, partials, blocks
+  * Compatible with `express`
+  * Backward compatible with `eco`
 
 ## Usage
 
@@ -45,8 +50,6 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 	console.log(html);
 });
 ```
-
-You can [play with demo](http://ectjs.com) to check all features.
 
 ### With express
 
@@ -182,7 +185,7 @@ renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
 });
 ```
 
-NOTE: root folder must be on the same domain to avoid cross-domain restrictions.
+Note: root folder must be on the same domain to avoid cross-domain restrictions.
 
 ## License 
 
