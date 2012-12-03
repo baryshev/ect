@@ -20,6 +20,7 @@
   * Inheritance, partials, blocks
   * Compatible with `express`
   * Backward compatible with `eco`
+  * [Syntax highlighting for Sublime Text 2](https://github.com/TurtlePie/Sublime-ECT) by [TurtlePie](https://github.com/TurtlePie)
 
 ## Usage
 
