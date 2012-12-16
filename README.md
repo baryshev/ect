@@ -11,10 +11,11 @@
 ## Features
 
   * Excellent performance
-  * Caching templates
+  * Templates caching
   * Automatic reloading of changed templates
   * CoffeeScript code in templates
-  * Supports tag customization
+  * Multi-line expressions support
+  * Tag customization support
   * Node.JS and client-side support
   * Powerful but simple syntax
   * Inheritance, partials, blocks
@@ -27,9 +28,18 @@
 ```js
 var ECT = require('ect');
 
-var renderer = ECT({ root : __dirname + '/view', ext : '.ect' });
+var renderer = ECT({ root : __dirname + '/views', ext : '.ect' });
+var html = renderer.render('page', { title: 'Hello, World!' });
+```
 
-renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
+or
+
+```js
+var ECT = require('ect');
+
+var renderer = ECT({ root : __dirname + '/views', ext : '.ect' });
+
+renderer.render('page', { title: 'Hello, World!' }, function (error, html) {
 	console.log(error);
 	console.log(html);
 });
@@ -46,10 +56,7 @@ var renderer = ECT({ root : {
 				}
 			});
 
-renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
-	console.log(error);
-	console.log(html);
-});
+var html = renderer.render('page', { title: 'Hello, World!' });
 ```
 
 ### With express
@@ -59,11 +66,11 @@ app.js
 var express = require('express');
 var app = express();
 var ECT = require('ect');
-var ectRenderer = ECT({ cache: true, watch: true, root: __dirname + '/views' });
+var ectRenderer = ECT({ watch: true, root: __dirname + '/views' });
 
 app.engine('.ect', ectRenderer.render);
 
-app.get('/', function(req, res){
+app.get('/', function (req, res){
 	res.render('index.ect');
 });
 
@@ -166,24 +173,68 @@ Blocks supports more than one level of inheritance and may be redefined.
 
 ## Options
 
-  - `root`            Templates root folder or JavaScript object containing templates
-  - `ext`             Extension of templates, defaulting to '' (not used for JavaScript objects as root)
-  - `cache`           Compiled functions are cached, defaulting to true
-  - `watch`           Automatic reloading of changed templates, defaulting to false (useful for debugging with enabled cache, not supported for client-side)
-  - `open`            Open tag, defaulting to '<%'
-  - `close`           Closing tag, defaulting to '%>'
+### Renderer
+
+  - `root` — Templates root folder or JavaScript object containing templates
+  - `ext` — Extension of templates, defaulting to `''` (not used for JavaScript objects as root)
+  - `cache` — Compiled functions are cached, defaulting to `true`
+  - `watch` — Automatic reloading of changed templates, defaulting to `false` (useful for debugging with enabled cache, not supported for client-side)
+  - `open` — Open tag, defaulting to `<%`
+  - `close` — Closing tag, defaulting to `%>`
+
+### Compiler middleware
+
+  - `root` — Base url, defaulting to `/` (should be equal to `root` option on the client side)
+  - `gzip` — Compressing templates with gzip, defaulting to `false`
 
 ## Client-side support
 
-Basically, include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js) to a page and ect ready to use.
+1. Download and include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js).
+
+```html
+<script src="/path/coffee-script.js"></script>
+<script src="/path/ect.min.js"></script>
+```
+
+2. Use it.
 
 ```js
-var renderer = ECT({ root : 'view' });
+var renderer = ECT({ root : '/views' });
+var data = { title : 'Hello, World!' };
+var html = renderer.render('template.ect', data);
+```
 
-renderer.render('page', { title: 'Hello, World!' }, function(error, html) {
-	console.log(error);
-	console.log(html);
-});
+### With server side compiler middleware
+
+1. Download and include [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js). You don't need to include CoffeeScript compiler, because templates are served already compiled by server side compiler middleware.
+
+```html
+<script src="/path/ect.min.js"></script>
+```
+
+2. Setup server side compiler middleware.
+
+```js
+var connect = require('connect');
+var ECT = require('ect');
+
+var renderer = ECT({ root : __dirname + '/views', ext : '.ect' });
+
+var app = connect()
+	.use(renderer.compiler({ root: '/views', gzip: true }))
+	.use(function(err, req, res, next) {
+		res.end(err.message);
+	});
+
+app.listen(3000);
+```
+
+3. Use it.
+
+```js
+var renderer = ECT({ root : '/views', ext : '.ect' });
+var data = { title : 'Hello, World!' };
+var html = renderer.render('template', data);
 ```
 
 Note: root folder must be on the same domain to avoid cross-domain restrictions.
