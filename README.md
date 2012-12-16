@@ -189,14 +189,14 @@ Blocks supports more than one level of inheritance and may be redefined.
 
 ## Client-side support
 
-1. Download and include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js).
+Download and include [coffee-script.js](https://github.com/jashkenas/coffee-script/blob/master/extras/coffee-script.js) and [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js).
 
 ```html
 <script src="/path/coffee-script.js"></script>
 <script src="/path/ect.min.js"></script>
 ```
 
-2. Use it.
+Use it.
 
 ```js
 var renderer = ECT({ root : '/views' });
@@ -206,13 +206,13 @@ var html = renderer.render('template.ect', data);
 
 ### With server side compiler middleware
 
-1. Download and include [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js). You don't need to include CoffeeScript compiler, because templates are served already compiled by server side compiler middleware.
+Download and include [ect.min.js](https://github.com/baryshev/ect/tree/master/ect.min.js). You don't need to include CoffeeScript compiler, because templates are served already compiled by server side compiler middleware.
 
 ```html
 <script src="/path/ect.min.js"></script>
 ```
 
-2. Setup server side compiler middleware.
+Setup server side compiler middleware.
 
 ```js
 var connect = require('connect');
@@ -229,7 +229,7 @@ var app = connect()
 app.listen(3000);
 ```
 
-3. Use it.
+Use it.
 
 ```js
 var renderer = ECT({ root : '/views', ext : '.ect' });
