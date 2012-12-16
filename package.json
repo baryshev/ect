@@ -1,6 +1,6 @@
 {
 	"name" : "ect",
-	"version" : "0.3.6",
+	"version" : "0.40",
 	"description" : "CoffeeScript template engine",
 	"keywords": [ "template", "coffeescript" ],
 	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
