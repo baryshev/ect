@@ -1,16 +1,21 @@
 {
 	"name" : "ect",
-	"version" : "0.4.11",
+	"version" : "0.5.0",
 	"description" : "CoffeeScript template engine",
-	"keywords": [ "template", "coffeescript" ],
+	"homepage" : "http://ectjs.com",
+	"keywords" : [ "template", "coffeescript" ],
 	"author" : "Vadim M. Baryshev <vadimbaryshev@gmail.com>",
-	"main" : "index",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/baryshev/ect.git"
+	"bin" : {
+		"ect" : "./bin/ect"
 	},
-	"dependencies": {
-		"coffee-script": "1.5.0"
+	"main" : "./index",
+	"repository" : {
+		"type" : "git",
+		"url" : "git://github.com/baryshev/ect.git"
 	},
-	"engines" : { "node": ">= 0.4.0" }
+	"dependencies" : {
+		"coffee-script" : "1.5.0",
+		"optimist" : "0.4.0"
+	},
+	"engines" : { "node" : ">= 0.4.0" }
 }

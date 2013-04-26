@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+var version = '0.5.0';
+var fs = require('fs');
+var optimist = require('optimist');
+var ect = require('ect');
+
+var argv = optimist
+	.usage('ECT template compiler ' + version + '\n\nUsage: ect source [destination]')
+	.describe('o', 'Open tag')
+	.default('o', '<%')
+	.alias('o', 'open')
+	.describe('c', 'Closing tag')
+	.default('c', '%>')
+	.alias('c', 'close')
+	.describe('h', 'Print help (this message) and exit')
+	.alias('h', 'help')
+	.argv;
+
+var renderer = ect({ open : argv.o, close : argv.c });
+
+var compile = function (content) {
+	try {
+		var compiled = renderer.compile(content);
+		if (argv['_'][1]) {
+			fs.writeFileSync(argv['_'][1], '(' + compiled.toString() + ');');
+		} else {
+			console.log(compiled.toString());
+		}
+	} catch (err) {
+		console.error(err.message);
+		process.exit();
+	}
+};
+
+var read = function () {
+	var content = '';
+	var file;
+	var stats;
+
+	try {
+		stats = fs.statSync(argv['_'][0]);
+	} catch (err) {
+		console.error(err.message);
+		process.exit();
+	}
+	if (stats.isDirectory()) {
+		// Directory
+		// TODO Recursive traversal
+	} else {
+		// File
+		try {
+			file = fs.readFileSync(argv['_'][0]);
+			content = file.toString();
+		} catch (err) {
+		}
+		compile(content);
+	}
+};
+
+if (argv.help || !argv['_'].length) {
+	optimist.showHelp();
+} else {
+	read();
+}
