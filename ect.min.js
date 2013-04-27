@@ -1,5 +1,5 @@
 /*!
- * ECT CoffeeScript template engine v0.5.0
+ * ECT CoffeeScript template engine v0.5.1
  * https://github.com/baryshev/ect
  *
  * Copyright 2012, Vadim M. Baryshev <vadimbaryshev@gmail.com>
