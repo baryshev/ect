@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var version = '0.5.1';
+var version = '0.5.2';
 var fs = require('fs');
 var optimist = require('optimist');
 var ect = require('ect');
