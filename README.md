@@ -69,10 +69,11 @@ var app = express();
 var ECT = require('ect');
 var ectRenderer = ECT({ watch: true, root: __dirname + '/views' });
 
-app.engine('.ect', ectRenderer.render);
+app.set('view engine', 'ect');
+app.engine('ect', ectRenderer.render);
 
 app.get('/', function (req, res){
-	res.render('index.ect');
+	res.render('index');
 });
 
 app.listen(3000);
