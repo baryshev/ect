@@ -82,8 +82,14 @@ console.log('Listening on port 3000');
 
 views/index.ect
 ```html
-<% extend 'layout.ect' %>
+<% extend 'layout' %>
+<% include 'extra' %>
 <div>Hello, World!</div>
+```
+
+views/extra.ect
+```html
+<div>Include me!</div>
 ```
 
 views/layout.ect
