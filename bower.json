@@ -28,7 +28,7 @@
     "index.js",
     "package.json"
   ],
-  "dependencies": [
+  "dependencies": {
     "coffee-script": ">= 1.5.0"
-  ]
+  }
 }
