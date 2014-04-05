@@ -67,12 +67,13 @@ app.js
 var express = require('express');
 var app = express();
 var ECT = require('ect');
-var ectRenderer = ECT({ watch: true, root: __dirname + '/views' });
+var ectRenderer = ECT({ watch: true, root: __dirname + '/views', ext : '.ect' });
 
-app.engine('.ect', ectRenderer.render);
+app.set('view engine', 'ect');
+app.engine('ect', ectRenderer.render);
 
 app.get('/', function (req, res){
-	res.render('index.ect');
+	res.render('index');
 });
 
 app.listen(3000);
@@ -81,8 +82,14 @@ console.log('Listening on port 3000');
 
 views/index.ect
 ```html
-<% extend 'layout.ect' %>
+<% extend 'layout' %>
+<% include 'extra' %>
 <div>Hello, World!</div>
+```
+
+views/extra.ect
+```html
+<div>Include me!</div>
 ```
 
 views/layout.ect
