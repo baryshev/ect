@@ -52,7 +52,7 @@ You may use JavaScript object as root.
 var ECT = require('ect');
 
 var renderer = ECT({ root : {
-				layout: '<html><head><title><%- title %></title></head><body><% content %></body></html>',
+				layout: '<html><head><title><%- @title %></title></head><body><% content %></body></html>',
 				page: '<% extend "layout" %><p>Page content</p>'
 				}
 			});
