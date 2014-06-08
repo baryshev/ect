@@ -1,6 +1,6 @@
 {
   "name": "ect",
-  "main": "ect.min.js",
+  "main": "lib/ect.js",
   "version": "0.5.9",
   "homepage": "https://github.com/baryshev/ect",
   "authors": [
@@ -24,7 +24,6 @@
     "bower_components",
     "bin",
     "examples",
-    "lib",
     "index.js",
     "package.json"
   ],
