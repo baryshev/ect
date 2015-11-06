@@ -1,7 +1,9 @@
-<% extend 'layout' %>
+<% extends 'layout' %>
+<% block 'main_content' : %>
 <div>
-<% content() %>
+<% block 'content' : %><% end %>
 </div>
+<% end %>
 <% block 'side1' : %>
 side1 content
 <% end %>

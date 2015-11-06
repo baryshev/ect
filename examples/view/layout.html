@@ -5,9 +5,9 @@
 	</head>
 	<body>
 		<header><% include 'header' %></header>
-		<section><% content %></section>
-		<section><% content 'side1' %></section>
-		<section><% content 'side2' %></section>
+		<section><% block 'main_content' : %><% end %></section>
+		<section><% block 'side1' : %><% end %></section>
+		<section><% block 'side2' : %><% end %></section>
 		<footer><% include 'footer' %></footer>
 	</body>
 </html>
