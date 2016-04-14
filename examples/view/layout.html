@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%- @title %></title>
+		<title>{%- @title %}</title>
 	</head>
 	<body>
-		<header><% include 'header' %></header>
-		<section><% block 'main_content' : %><% end %></section>
-		<section><% block 'side1' : %><% end %></section>
-		<section><% block 'side2' : %><% end %></section>
-		<footer><% include 'footer' %></footer>
+		<header>{% include 'header' %}</header>
+		<section>{% block 'main_content' : %}{% end %}</section>
+		<section>{% block 'side1' : %}{% end %}</section>
+		<section>{% block 'side2' : %}{% end %}</section>
+		<footer>{% include 'footer' %}</footer>
 	</body>
 </html>

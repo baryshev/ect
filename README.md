@@ -4,9 +4,21 @@
 
 [Just try demo](http://ectjs.com) to check all features.
 
+#
+
 ## Installation
 
-	npm install ect
+	npm install ect@1
+
+**Important**: v1.0.0 have breaking changes in templates syntax. You can use ect@0.5.9 for for old templates.
+
+## Breaking changes
+
+  * Default open and close tags changed to `{%` and `%}`.
+  * Keyword `extend` changed to `extends`.
+  * Keyword `content` no more exists. Use `block` constructions instead.
+  * Child templates can only contains one or multiple blocks, plain html will be ignored.
+  * Blocks may contains default content.
 
 ## Features
 
@@ -52,8 +64,8 @@ You may use JavaScript object as root.
 var ECT = require('ect');
 
 var renderer = ECT({ root : {
-				layout: '<html><head><title><%- @title %></title></head><body><% content %></body></html>',
-				page: '<% extend "layout" %><p>Page content</p>'
+				layout: '<html><head><title>{%- @title %}</title></head><body>{% block "content" : %}{% end %}</body></html>',
+				page: '{% extends "layout" %}{% block "content" : %}<p>Page content</p>{% end %}'
 				}
 			});
 
@@ -82,9 +94,11 @@ console.log('Listening on port 3000');
 
 views/index.ect
 ```html
-<% extend 'layout' %>
-<% include 'extra' %>
-<div>Hello, World!</div>
+{% extends 'layout' %}
+{% block 'content' : %}
+	{% include 'extra' %}
+	<div>Hello, World!</div>
+{% end %}
 ```
 
 views/extra.ect
@@ -96,7 +110,7 @@ views/layout.ect
 ```html
 <html>
 	<body>
-		<% content %>
+		{% block 'content' : %}{% end %}
 	</body>
 </html>
 ```
@@ -106,44 +120,47 @@ views/layout.ect
 ### Unescaped output
 
 ```
-<%- someVar %>
+{%- someVar %}
 ```
 
 ### Escaped output
 
 ```
-<%= someVar %>
+{%= someVar %}
 ```
 
 ### CoffeeScript code
 
 ```
-<% for article in @articles : %>
-	<% include 'article', article %>
-<% end %>
+{% for article in @articles : %}
+	{% include 'article', article %}
+{% end %}
 ```
 
 or
 
 ```
-<% if @user?.authenticated : %>
-	<% include 'partials/user' %>
-<% else : %>
-	<% include 'partials/auth' %>
-<% end %>
+{% if @user?.authenticated : %}
+	{% include 'partials/user' %}
+{% else : %}
+	{% include 'partials/auth' %}
+{% end %}
 ```
 
 ### Inheritance
 
 ```
-<% extend 'layout' %>
+{% extends 'layout' %}
+{% block 'block_name_1' : %}Block 1 content{% end %}
+{% block 'block_name_1' : %}Block 2 content{% end %}
 ```
 
 Use
 
 
 ```
-<% content %>
+{% block 'block_name_1' : %}Block 1 optional default content{% end %}
+{% block 'block_name_1' : %}Block 2 optional default content{% end %}
 ```
 
 in parent template to define the insertion point.
@@ -151,28 +168,28 @@ in parent template to define the insertion point.
 ### Partials
 
 ```
-<% include 'partial' %>
+{% include 'partial' %}
 ```
 
 You can redefine data context of partial
 
 ```
-<% include 'partial', { customVar: 'Hello, World!' } %>
+{% include 'partial', { customVar: 'Hello, World!' } %}
 ```
 
 ### Blocks
 
 ```
-<% block 'blockName' : %>
+{% block 'blockName' : %}
 	<p>This is block content</p>
-<% end %>
+{% end %}
 ```
 
 Use
 
 
 ```
-<% content 'blockName' %>
+{% content 'blockName' %}
 ```
 
 in parent template to define the insertion point.
@@ -187,8 +204,8 @@ Blocks supports more than one level of inheritance and may be redefined.
   - `ext` — Extension of templates, defaulting to `''` (not used for JavaScript objects as root)
   - `cache` — Compiled functions are cached, defaulting to `true`
   - `watch` — Automatic reloading of changed templates, defaulting to `false` (useful for debugging with enabled cache, not supported for client-side)
-  - `open` — Open tag, defaulting to `<%`
-  - `close` — Closing tag, defaulting to `%>`
+  - `open` — Open tag, defaulting to `{%`
+  - `close` — Closing tag, defaulting to `%}`
 
 ### Compiler middleware
 

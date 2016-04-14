@@ -8,10 +8,10 @@ var ect = require('ect');
 var argv = optimist
 	.usage('ECT template compiler ' + version + '\n\nUsage: ect source [destination]')
 	.describe('o', 'Open tag')
-	.default('o', '<%')
+	.default('o', '{%')
 	.alias('o', 'open')
 	.describe('c', 'Closing tag')
-	.default('c', '%>')
+	.default('c', '%}')
 	.alias('c', 'close')
 	.describe('h', 'Print help (this message) and exit')
 	.alias('h', 'help')
