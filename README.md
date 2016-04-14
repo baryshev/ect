@@ -268,7 +268,7 @@ Note: root folder must be on the same domain to avoid cross-domain restrictions.
 
 (The MIT License)
 
-Copyright (c) 2012 Vadim M. Baryshev &lt;vadimbaryshev@gmail.com&gt;
+Copyright (c) 2012-2016 Vadim M. Baryshev &lt;vadimbaryshev@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
