@@ -1,4 +1,6 @@
 .git*
 examples/
 ect.min.js
+ect.min.map
+bower.json
 node_modules/
